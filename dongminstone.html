@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동민조형석재 | 석재 조형물 · 기념비 전문 제작</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone-dark: #1a1a1a;
+            --stone-mid: #4a4a4a;
+            --stone-light: #f4f4f4;
+            --accent: #2c3e50;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .logo-img {
+    height: 50px;       /* 로고의 세로 높이입니다. 적절하게 조절하세요. */
+    width: auto;         /* 가로 세로 비율 유지 */
+    display: block;
+    object-fit: contain; /* 이미지가 잘리지 않고 영역 안에 쏙 들어가게 함 */
+    cursor: pointer;
+}
+
+/* 모바일 화면에서는 로고를 조금 더 작게 조정 */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 40px;
+    }
+}
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            color: var(--stone-dark); 
+            line-height: 1.6; 
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 100px 0; }
+        .hidden { display: none !important; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--stone-dark); cursor: pointer; }
+        .nav-links button { 
+            background: none; border: none; font-size: 1rem; margin-left: 30px; 
+            cursor: pointer; font-weight: 400; color: var(--stone-mid);
+        }
+        .nav-links button.active { color: var(--stone-dark); font-weight: 700; }
+
+        /* Hero Section */
+        .hero {
+    height: 90vh;
+    display: flex; align-items: center; justify-content: center;
+    
+    /* 아래 이 부분을 통째로 복사해서 바꾸세요 */
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://raw.githubusercontent.com/ehdgk0214/Dongminstone/main/image%20folder/dongmin_background.jpg') center/cover;
+    
+    color: var(--white); 
+    text-align: center;
+}
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+        .cta-group { display: flex; gap: 15px; justify-content: center; }
+        .btn {
+            padding: 16px 40px; font-size: 1rem; cursor: pointer; transition: var(--transition);
+            border: none; font-weight: 500;
+        }
+        /* 1. 작품 보기 버튼 (테두리만 있는 스타일로 변경) */
+        .btn-primary { 
+            background: transparent; 
+            border: 1px solid var(--white); 
+            color: var(--white); 
+        }
+
+        /* 2. 문의하기 버튼 (배경이 꽉 찬 스타일로 변경) */
+        .btn-outline { 
+            background: var(--white); 
+            border: none;
+            color: var(--stone-dark); 
+        }
+
+        /* 마우스를 올렸을 때 효과 (선택사항: 더 자연스럽게 보이게 함) */
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .btn-outline:hover {
+            background: #f0f0f0;
+        }
+
+        /* Trust Block */
+        .trust-block { background: var(--stone-light); padding: 40px 0; border-bottom: 1px solid #ddd; }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; }
+        .trust-item { font-weight: 500; color: var(--stone-mid); font-size: 0.95rem; }
+
+        /* Gallery */
+        .section-title { font-size: 2rem; margin-bottom: 50px; text-align: center; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
+        .gallery-item { cursor: pointer; overflow: hidden; position: relative; background: #eee; }
+        .gallery-item img { width: 100%; aspect-ratio: 4/3; object-fit: cover; transition: var(--transition); display: block; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-info { padding: 20px 0; }
+        .gallery-info h3 { font-size: 1.1rem; margin-bottom: 5px; }
+        .gallery-info p { font-size: 0.9rem; color: #666; }
+
+        /* Categories & Process */
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .category-card { padding: 30px; border: 1px solid #eee; transition: var(--transition); }
+        .category-card:hover { border-color: var(--stone-dark); }
+        
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .step { position: relative; }
+        .step-num { font-size: 3rem; font-weight: 700; opacity: 0.1; position: absolute; top: -20px; left: 0; }
+        .step h4 { margin-top: 20px; margin-bottom: 10px; }
+
+        /* Contact Page Specifics */
+        .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 50px; }
+        .contact-methods h3 { margin-bottom: 30px; }
+        .method-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .method-item label { display: block; font-size: 0.8rem; color: #888; text-transform: uppercase; }
+        .method-item a { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+
+        .inquiry-form { background: var(--stone-light); padding: 40px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 0; font-family: inherit;
+        }
+        .btn-submit { width: 100%; background: var(--stone-dark); color: var(--white); padding: 18px; border: none; font-size: 1.1rem; cursor: pointer; }
+
+        /* Modal / Lightbox */
+        #modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000;
+            display: none; align-items: center; justify-content: center; padding: 40px;
+        }
+        .modal-content { max-width: 1000px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .modal-image { max-width: 100%; max-height: 70vh; object-fit: contain; }
+        .modal-text { color: white; margin-top: 20px; text-align: center; }
+        .close-modal { position: absolute; top: 30px; right: 30px; color: white; font-size: 2rem; cursor: pointer; }
+
+        /* Footer */
+        footer { background: var(--stone-dark); color: #888; padding: 60px 0; font-size: 0.9rem; }
+        .footer-content { display: flex; justify-content: space-between; align-items: flex-end; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content h1 { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+    <div class="container nav-content">
+        <div class="logo" onclick="showPage('portfolio')">
+    <img src="https://raw.githubusercontent.com/ehdgk0214/Dongminstone/main/image%20folder/dongmin_logo.jpg" alt="동민조형석재 로고" class="logo-img">
+</div>
+        <div class="nav-links">
+                <button onclick="showPage('portfolio')" id="btn-port">작품 보기</button>
+                <button onclick="showPage('contact')" id="btn-cont">문의하기</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="portfolio-page">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>석재 조형물 · 기념비 · 맞춤 제작</h1>
+                <p>수십 년의 숙련된 기술로 공간의 가치를 더하는 석재 예술을 실현합니다.</p>
+                <div class="cta-group">
+                    <button class="btn btn-primary" onclick="document.getElementById('gallery').scrollIntoView()">작품 보기</button>
+                    <button class="btn btn-outline" onclick="showPage('contact')">문의하기</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="trust-block">
+            <div class="container trust-grid">
+                <div class="trust-item">✓ 기념비 · 추모비 · 조형물 전문</div>
+                <div class="trust-item">✓ 전국 현장 맞춤 설계 및 제작</div>
+                <div class="trust-item">✓ 정교한 석재 가공 및 문자 각인</div>
+            </div>
+        </div>
+
+        <section id="gallery" class="container">
+            <h2 class="section-title">주요 작품 포트폴리오</h2>
+            <div class="gallery-grid" id="gallery-container">
+                </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">주요 제작 분야</h2>
+            <div class="category-grid">
+                <div class="category-card"><h3>기념비</h3><p>기관, 학교, 공공장소의 상징적인 기념비 제작</p></div>
+                <div class="category-card"><h3>추모비</h3><p>품격 있는 석재 선별과 정교한 각인 기술</p></div>
+                <div class="category-card"><h3>조형물</h3><p>공원 및 건물 로비용 예술적 석재 조각</p></div>
+                <div class="category-card"><h3>맞춤 제작</h3><p>고객이 원하는 규격과 디자인의 특수 석제품</p></div>
+            </div>
+        </section>
+
+        <section style="background: var(--stone-light);">
+            <div class="container">
+                <h2 class="section-title">제작 및 상담 과정</h2>
+                <div class="process-steps">
+                    <div class="step"><span class="step-num">01</span><h4>문의 접수</h4><p>전화 또는 폼을 통한 기초 상담</p></div>
+                    <div class="step"><span class="step-num">02</span><h4>용도 협의</h4><p>설치 장소와 목적, 크기 확인</p></div>
+                    <div class="step"><span class="step-num">03</span><h4>설계 및 컨펌</h4><p>석재 선정 및 제작 방향 확정</p></div>
+                    <div class="step"><span class="step-num">04</span><h4>제작 및 납품</h4><p>정밀 제작 후 안전한 현장 설치</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center;">
+            <div class="container">
+                <h2 style="margin-bottom: 30px;">원하시는 석재 조형물 상담이 필요하신가요?</h2>
+                <button class="btn btn-primary" style="background: var(--stone-dark); color: white;" onclick="showPage('contact')">지금 문의하기</button>
+            </div>
+        </section>
+    </main>
+
+    <main id="contact-page" class="hidden" style="margin-top: 80px;">
+        <section class="container">
+            <h1 style="font-size: 3rem;">문의 및 상담</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 40px; color: #666;">
+                작품 종류, 크기, 설치 장소를 함께 알려주시면 상담이 더 빠르게 진행됩니다.
+            </p>
+
+            <div class="contact-layout">
+                <div class="contact-methods">
+                    <div class="method-item">
+                        <label>대표 전화</label>
+                        <a href="tel:010-9456-6062">010-9456-6062</a>
+                    </div>
+                    <div class="method-item">
+                        <label>이메일 문의</label>
+                        <a href="mailto:killmo70@hanmail.net">killmo70@hanmail.net</a>
+                    </div>
+                    <div class="method-item" style="border: none;">
+                        <label>오시는 길</label>
+                        <p style="font-size: 1.1rem; margin-top:10px;">경상남도 거창군 위천면 원학길 94-29 </p>
+                    </div>
+                    <div style="background:#f9f9f9; padding:20px; border-left: 4px solid var(--stone-dark);">
+                        <h4 style="margin-bottom:10px;">상담 준비 가이드</h4>
+                        <ul style="font-size: 0.9rem; color: #555;">
+                            <li>• 작품 종류 (기념비, 조형물 등)</li>
+                            <li>• 대략적인 크기 (높이/너비)</li>
+                            <li>• 설치 지역 및 지면 상태</li>
+                            <li>• 희망 납품 일정</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="inquiry-form">
+                    <form id="contactForm">
+                        <div class="form-group"><label>성함/업체명</label><input type="text" required></div>
+                        <div class="form-group"><label>연락처</label><input type="tel" required></div>
+                        <div class="form-group"><label>설치 지역</label><input type="text"></div>
+                        <div class="form-group">
+                            <label>문의 내용</label>
+                            <textarea rows="6" placeholder="원하시는 디자인이나 크기 등을 자유롭게 적어주세요." required></textarea>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px;">
+                            문의 확인 후 순차적으로 연락드립니다. 급한 상담은 전화 문의를 권장합니다.
+                        </p>
+                        <button type="submit" class="btn-submit">상담 신청하기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <img class="modal-image" id="modal-img" src="" alt="">
+            <div class="modal-text">
+                <h3 id="modal-title"></h3>
+                <p id="modal-loc" style="opacity: 0.8; margin: 5px 0;"></p>
+                <p id="modal-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <h3 style="color: white; margin-bottom: 10px;">동민조형석재</h3>
+                <p>대표: 김흥수 | 사업자번호: 611-05-16684</p>
+                <p>주소: 경상남도 거창군 위천면 원학길 94-29</p>
+            </div>
+            <p>© 2026 DONGMIN STONE. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. DATA STRUCTURE (Easy to Edit)
+        const artworks = [
+            { id: 1, title: "장생포 고래 조형물", location: "장생포 고래박물관 근처", desc: "고래박물관 근처 고래의꿈 분수대에 설치된 화강암 조형물", img: "https://raw.githubusercontent.com/ehdgk0214/Dongminstone/main/image%20folder/dongmin_whale.jpg" },
+            { id: 2, title: "윤흥신 장군상 좌대,배경", location: "부산 동구 윤흥신 장군상", desc: "대형 좌대", img: "https://raw.githubusercontent.com/ehdgk0214/Dongminstone/main/image%20folder/dongmin_busan.jpg" },
+            { id: 3, title: "남사예담촌 표지석", location: "경남 산청군 남사예담촌", desc: "마을의 개성이 담긴 마을표지석", img: "https://raw.githubusercontent.com/ehdgk0214/Dongminstone/main/image%20folder/dongmin_namsa.jpg" },
+            { id: 4, title: "국민보도연맹사건 희생자 위령비", location: "경남 산청", desc: "희생자들의 이름이 담긴 위령비", img: "https://raw.githubusercontent.com/ehdgk0214/Dongminstone/main/image%20folder/dongmin_sanch.jpg" },
+            { id: 5, title: "임업기술실용화센터 표지석", location: "대전광역시 유성구 학하로", desc: "여러 색감을 가진 석재의 조화", img: "https://raw.githubusercontent.com/ehdgk0214/Dongminstone/main/image%20folder/dongmin_block.jpg" },
+            { id: 6, title: "불상", location: "동민조형석재 작업장", desc: "부여 대조사 석조미륵보살입상 복각", img: "https://raw.githubusercontent.com/ehdgk0214/Dongminstone/main/image%20folder/dongmin_budd.jpg" }
+        ];
+
+        // 2. RENDER GALLERY
+        const container = document.getElementById('gallery-container');
+        artworks.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            div.innerHTML = `
+                <img src="${item.img}" alt="${item.title}" loading="lazy" onclick="openModal(${item.id})">
+                <div class="gallery-info">
+                    <h3>${item.title}</h3>
+                    <p>${item.location}</p>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+
+        // 3. PAGE SWITCHING LOGIC
+        function showPage(pageId) {
+            window.scrollTo(0, 0);
+            if(pageId === 'portfolio') {
+                document.getElementById('portfolio-page').classList.remove('hidden');
+                document.getElementById('contact-page').classList.add('hidden');
+                document.getElementById('btn-port').classList.add('active');
+                document.getElementById('btn-cont').classList.remove('active');
+            } else {
+                document.getElementById('portfolio-page').classList.add('hidden');
+                document.getElementById('contact-page').classList.remove('hidden');
+                document.getElementById('btn-port').classList.remove('active');
+                document.getElementById('btn-cont').classList.add('active');
+            }
+        }
+
+        // 4. MODAL LOGIC
+        function openModal(id) {
+            const item = artworks.find(a => a.id === id);
+            document.getElementById('modal-img').src = item.img;
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-loc').innerText = `위치: ${item.location}`;
+            document.getElementById('modal-desc').innerText = item.desc;
+            document.getElementById('modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Keyboard support for Modal
+        window.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape') closeModal();
+        });
+
+        // Form Submission (Simulated)
+        document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('상담 신청이 완료되었습니다. 확인 후 곧 연락드리겠습니다.');
+        });
+    </script>
+</body>
+</html>
