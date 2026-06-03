@@ -72,12 +72,12 @@ window.DONGMIN_ARTWORKS = [
         description: "제작 과정과 완성작을 함께 담은 조각 기록",
         coverImage: imagePath("dm_budd1.jpg"),
         images: [
+            imagePath("dm_budd1.jpg"),
+            imagePath("dm_budd2.jpg"),
             imagePath("dm_family.jpg"),
             imagePath("dm_xiamen.jpg"),
-            imagePath("dm_mt.jpg"),
             imagePath("dongmin_bud.jpg"),
-            imagePath("dm_budd1.jpg"),
-            imagePath("dm_budd2.jpg")
+            imagePath("dm_mt.jpg")
         ]
     }
 ];
