@@ -54,9 +54,7 @@ window.DONGMIN_ARTWORKS = [
         coverImage: imagePath("dongmin_budd.jpg"),
         images: [
             imagePath("dongmin_budd.jpg"),
-            imagePath("dongmin_bud.jpg"),
-            imagePath("dm_budd1.jpg"),
-            imagePath("dm_budd2.jpg")
+            
         ]
     },
     {
@@ -72,11 +70,14 @@ window.DONGMIN_ARTWORKS = [
         title: "석재 조각 아카이브",
         location: "동민조형석재",
         description: "제작 과정과 완성작을 함께 담은 조각 기록",
-        coverImage: imagePath("dm_family.jpg"),
+        coverImage: imagePath("dm_budd1.jpg"),
         images: [
             imagePath("dm_family.jpg"),
             imagePath("dm_xiamen.jpg"),
-            imagePath("dm_mt.jpg")
+            imagePath("dm_mt.jpg"),
+            imagePath("dongmin_bud.jpg"),
+            imagePath("dm_budd1.jpg"),
+            imagePath("dm_budd2.jpg")
         ]
     }
 ];
