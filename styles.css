@@ -218,7 +218,7 @@ p {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 520ms ease, filter 520ms ease;
 }
 
