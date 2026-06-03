@@ -205,19 +205,15 @@ p {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 420px));
+    justify-content: center;
     gap: 48px 28px;
 }
 
-.gallery-item {
-    grid-column: span 4;
-    cursor: pointer;
-    outline: none;
-}
-
+.gallery-item,
 .gallery-item:nth-child(6n + 1),
 .gallery-item:nth-child(6n + 4) {
-    grid-column: span 6;
+    grid-column: auto;
 }
 
 .gallery-visual {
