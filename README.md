@@ -4,6 +4,8 @@ This repository contains the official portfolio website for Dongmin Stone, a sto
 
 The website presents selected works including stone sculptures, memorial monuments, village markers, restoration-inspired pieces, and custom stone projects. It is built as a lightweight static website for GitHub Pages, with a quiet exhibition-style layout, responsive design, optimized gallery thumbnails, and artwork detail modals.
 
+This project was developed with assistance from GPT Codex, which helped structure the static website, refine the gallery interactions, and optimize the image workflow.
+
 ## About The Project
 
 This website was created to introduce Dongmin Stone's craftsmanship in a clean and accessible format. The main gallery shows representative images for each work, while the detail view allows visitors to browse additional photos without making the homepage feel crowded.
