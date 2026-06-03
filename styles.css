@@ -223,11 +223,15 @@ p {
 .gallery-visual {
     overflow: hidden;
     background: var(--soft);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .gallery-visual img {
     display: block;
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     height: auto;
     max-height: 520px;
     aspect-ratio: auto;
