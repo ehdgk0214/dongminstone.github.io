@@ -16,6 +16,7 @@
     let activeImageIndex = 0;
     let lastFocusedElement = null;
     let parallaxTicking = false;
+    let modalCleanupTimer = null;
 
     function createTextElement(tag, text, className) {
         const element = document.createElement(tag);
@@ -127,6 +128,7 @@
         const images = getArtworkImages(artwork);
         if (!artwork || images.length === 0) return;
 
+        window.clearTimeout(modalCleanupTimer);
         activeArtworkIndex = index;
         lastFocusedElement = document.activeElement;
 
@@ -147,8 +149,16 @@
         modal.classList.remove("is-open");
         modal.setAttribute("aria-hidden", "true");
         document.body.classList.remove("modal-open");
-        modalImage.removeAttribute("src");
-        modal.classList.remove("has-single-image");
+
+        modalCleanupTimer = window.setTimeout(() => {
+            if (modal.classList.contains("is-open")) return;
+
+            modalImage.removeAttribute("src");
+            modalImage.removeAttribute("alt");
+            modalCounter.textContent = "";
+            modalThumbnails.innerHTML = "";
+            modal.classList.remove("has-single-image");
+        }, 260);
 
         if (lastFocusedElement) {
             lastFocusedElement.focus();
