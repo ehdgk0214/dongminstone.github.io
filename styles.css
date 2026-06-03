@@ -809,7 +809,7 @@ p {
 
 @media (max-width: 640px) and (orientation: portrait) {
     .intro-screen {
-        background-position: calc(50% - 1050px) center;
+        background-position: calc(50% - 900px) center;
     }
 }
 
