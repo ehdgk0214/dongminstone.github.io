@@ -8,6 +8,7 @@
     const modalDescription = document.getElementById("modal-description");
     const modalThumbnails = document.getElementById("modal-thumbnails");
     const modalCounter = document.getElementById("modal-counter");
+    const siteNav = document.querySelector(".site-nav");
     const closeButton = modal.querySelector("[data-modal-close]");
     const previousButton = modal.querySelector("[data-modal-prev]");
     const nextButton = modal.querySelector("[data-modal-next]");
@@ -17,6 +18,7 @@
     let lastFocusedElement = null;
     let parallaxTicking = false;
     let modalCleanupTimer = null;
+    let imageSwitchTimer = null;
 
     function createTextElement(tag, text, className) {
         const element = document.createElement(tag);
@@ -76,6 +78,8 @@
 
             gallery.append(item);
         });
+
+        revealGalleryItems();
     }
 
     function renderThumbnails(images) {
@@ -104,14 +108,54 @@
         const images = getArtworkImages(artwork);
 
         activeImageIndex = (index + images.length) % images.length;
-        modalImage.src = images[activeImageIndex];
         modalImage.alt = artwork.title;
         modalCounter.textContent = `${activeImageIndex + 1} / ${images.length}`;
+        modalImage.classList.add("is-switching");
+        window.clearTimeout(imageSwitchTimer);
+
+        const nextSrc = images[activeImageIndex];
+        const preload = new Image();
+
+        preload.onload = () => {
+            window.clearTimeout(imageSwitchTimer);
+            modalImage.src = nextSrc;
+            window.requestAnimationFrame(() => {
+                modalImage.classList.remove("is-switching");
+            });
+            preloadNeighborImages(images);
+        };
+
+        preload.onerror = () => {
+            window.clearTimeout(imageSwitchTimer);
+            modalImage.src = nextSrc;
+            modalImage.classList.remove("is-switching");
+        };
+
+        imageSwitchTimer = window.setTimeout(() => {
+            modalImage.src = nextSrc;
+            modalImage.classList.remove("is-switching");
+        }, 450);
+
+        preload.src = nextSrc;
 
         modalThumbnails.querySelectorAll(".modal-thumbnail").forEach((thumbnail, thumbnailIndex) => {
             const isActive = thumbnailIndex === activeImageIndex;
             thumbnail.classList.toggle("is-active", isActive);
             thumbnail.setAttribute("aria-current", isActive ? "true" : "false");
+        });
+    }
+
+    function preloadNeighborImages(images) {
+        if (images.length < 2) return;
+
+        const neighbors = [
+            images[(activeImageIndex + 1) % images.length],
+            images[(activeImageIndex - 1 + images.length) % images.length]
+        ];
+
+        neighbors.forEach((src) => {
+            const image = new Image();
+            image.src = src;
         });
     }
 
@@ -146,6 +190,8 @@
     }
 
     function closeModal() {
+        window.clearTimeout(imageSwitchTimer);
+        modalImage.classList.remove("is-switching");
         modal.classList.remove("is-open");
         modal.setAttribute("aria-hidden", "true");
         document.body.classList.remove("modal-open");
@@ -199,6 +245,36 @@
         window.requestAnimationFrame(updateHeroParallax);
     }
 
+    function updateNavState() {
+        siteNav?.classList.toggle("is-scrolled", window.scrollY > 24);
+    }
+
+    function revealGalleryItems() {
+        const items = document.querySelectorAll(".gallery-item");
+
+        if (!("IntersectionObserver" in window)) {
+            items.forEach((item) => item.classList.add("is-visible"));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries, galleryObserver) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                entry.target.classList.add("is-visible");
+                galleryObserver.unobserve(entry.target);
+            });
+        }, {
+            rootMargin: "0px 0px -8% 0px",
+            threshold: 0.12
+        });
+
+        items.forEach((item, index) => {
+            item.style.transitionDelay = `${Math.min(index, 5) * 45}ms`;
+            observer.observe(item);
+        });
+    }
+
     closeButton.addEventListener("click", closeModal);
     previousButton.addEventListener("click", showPreviousImage);
     nextButton.addEventListener("click", showNextImage);
@@ -206,9 +282,13 @@
         if (event.target === modal) closeModal();
     });
     window.addEventListener("keydown", handleModalKeys);
-    window.addEventListener("scroll", requestHeroParallaxUpdate, { passive: true });
+    window.addEventListener("scroll", () => {
+        requestHeroParallaxUpdate();
+        updateNavState();
+    }, { passive: true });
     window.addEventListener("resize", requestHeroParallaxUpdate);
 
     renderGallery();
     updateHeroParallax();
+    updateNavState();
 })();

@@ -54,9 +54,16 @@ textarea {
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.94);
-    border-bottom: 1px solid rgba(23, 23, 23, 0.08);
+    background: rgba(255, 255, 255, 0.68);
+    border-bottom: 1px solid rgba(23, 23, 23, 0);
     backdrop-filter: blur(10px);
+    transition: background var(--ease), border-color var(--ease), box-shadow var(--ease);
+}
+
+.site-nav.is-scrolled {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(23, 23, 23, 0.08);
+    box-shadow: 0 10px 30px rgba(23, 23, 23, 0.04);
 }
 
 .nav-inner {
@@ -234,6 +241,17 @@ p {
 .gallery-item:nth-child(6n + 1),
 .gallery-item:nth-child(6n + 4) {
     grid-column: auto;
+}
+
+.gallery-item {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.gallery-item.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
 }
 
 .gallery-visual {
@@ -455,6 +473,12 @@ p {
     width: 100%;
     max-height: 78vh;
     object-fit: contain;
+    opacity: 1;
+    transition: opacity 180ms ease;
+}
+
+.modal-stage img.is-switching {
+    opacity: 0.18;
 }
 
 .modal-nav {
@@ -673,5 +697,25 @@ p {
 
     .site-footer {
         display: block;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .site-nav,
+    .gallery-item,
+    .gallery-visual img,
+    .artwork-modal,
+    .modal-shell,
+    .modal-stage img {
+        transition: none;
+    }
+
+    .gallery-item {
+        opacity: 1;
+        transform: none;
     }
 }
