@@ -807,6 +807,12 @@ p {
     }
 }
 
+@media (max-width: 640px) and (orientation: portrait) {
+    .intro-screen {
+        background-position: calc(50% - 800px) center;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
