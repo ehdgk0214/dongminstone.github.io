@@ -93,7 +93,7 @@ textarea {
 }
 
 .hero-copy {
-    width: min(760px, 100%);
+    width: min(900px, 100%);
 }
 
 .eyebrow {
@@ -118,9 +118,20 @@ p {
 
 .hero h1 {
     margin-bottom: 18px;
-    font-size: clamp(2.4rem, 5vw, 4.5rem);
-    line-height: 1.12;
+    font-size: clamp(2.4rem, 4.4vw, 4.5rem);
+    line-height: 1.16;
     font-weight: 700;
+    word-break: keep-all;
+}
+
+.mobile-break {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .mobile-break {
+        display: block;
+    }
 }
 
 .hero p:not(.eyebrow) {
@@ -217,8 +228,11 @@ p {
 .gallery-visual img {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: auto;
+    max-height: 520px;
+    aspect-ratio: auto;
     object-fit: contain;
+    background: var(--soft);
     transition: transform 520ms ease, filter 520ms ease;
 }
 
