@@ -1,9 +1,9 @@
 :root {
-    --ink: #171717;
-    --muted: #686868;
-    --soft: #f5f5f2;
-    --line: #dedbd5;
-    --accent: #56685d;
+    --ink: #1c1b18;
+    --muted: #6f6a61;
+    --soft: #f4f1eb;
+    --line: #ddd5c8;
+    --accent: #6f6253;
     --white: #ffffff;
     --max: 1180px;
     --ease: 220ms ease;
@@ -30,6 +30,10 @@ body.modal-open {
     overflow: hidden;
 }
 
+body.intro-active {
+    overflow: hidden;
+}
+
 main {
     position: relative;
     isolation: isolate;
@@ -48,6 +52,57 @@ button,
 input,
 textarea {
     font: inherit;
+}
+
+.intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: grid;
+    place-items: center;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.34)),
+        url("image%20folder/dongmin_background.jpg") center / cover;
+    opacity: 1;
+    transition: opacity 520ms ease, visibility 520ms ease;
+}
+
+.intro-screen.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-enter {
+    position: relative;
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 18px 28px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transform: scale(1);
+    transition: color var(--ease), opacity var(--ease), transform var(--ease);
+}
+
+.intro-enter::before {
+    content: "";
+    position: absolute;
+    inset: -18px -28px;
+}
+
+.intro-enter:hover,
+.intro-enter:focus-visible {
+    color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.08);
+}
+
+.intro-enter:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.62);
+    outline-offset: 4px;
 }
 
 .site-nav {
@@ -102,7 +157,7 @@ textarea {
     text-align: center;
     color: var(--white);
     background:
-        linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.42)),
+        linear-gradient(rgba(28, 27, 24, 0.38), rgba(28, 27, 24, 0.44)),
         url("image%20folder/dongmin_background.jpg") center / cover;
     transform: translate3d(0, var(--hero-parallax, 0px), 0);
     will-change: transform;
@@ -600,7 +655,7 @@ p {
     display: flex;
     justify-content: space-between;
     gap: 30px;
-    background: var(--ink);
+    background: #1c1b18;
     color: rgba(255, 255, 255, 0.58);
     font-size: 0.88rem;
 }
@@ -730,6 +785,8 @@ p {
     }
 
     .site-nav,
+    .intro-screen,
+    .intro-enter,
     .gallery-item,
     .gallery-visual img,
     .artwork-modal,

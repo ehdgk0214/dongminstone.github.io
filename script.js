@@ -9,6 +9,8 @@
     const modalThumbnails = document.getElementById("modal-thumbnails");
     const modalCounter = document.getElementById("modal-counter");
     const siteNav = document.querySelector(".site-nav");
+    const introScreen = document.getElementById("intro-screen");
+    const introEnter = document.getElementById("intro-enter");
     const closeButton = modal.querySelector("[data-modal-close]");
     const previousButton = modal.querySelector("[data-modal-prev]");
     const nextButton = modal.querySelector("[data-modal-next]");
@@ -278,6 +280,12 @@
         });
     }
 
+    function enterSite() {
+        introScreen?.classList.add("is-hidden");
+        document.body.classList.remove("intro-active");
+    }
+
+    introEnter?.addEventListener("click", enterSite);
     closeButton.addEventListener("click", closeModal);
     previousButton.addEventListener("click", showPreviousImage);
     nextButton.addEventListener("click", showNextImage);
