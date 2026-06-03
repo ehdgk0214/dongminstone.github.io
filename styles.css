@@ -477,8 +477,13 @@ p {
     transition: opacity 180ms ease;
 }
 
+.modal-stage img:not([src]),
+.modal-stage img[src=""] {
+    visibility: hidden;
+}
+
 .modal-stage img.is-switching {
-    opacity: 0.18;
+    opacity: 0;
 }
 
 .modal-nav {

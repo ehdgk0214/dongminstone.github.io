@@ -108,8 +108,8 @@
         const images = getArtworkImages(artwork);
 
         activeImageIndex = (index + images.length) % images.length;
-        modalImage.alt = artwork.title;
         modalCounter.textContent = `${activeImageIndex + 1} / ${images.length}`;
+        modalImage.alt = "";
         modalImage.classList.add("is-switching");
         window.clearTimeout(imageSwitchTimer);
 
@@ -119,6 +119,7 @@
         preload.onload = () => {
             window.clearTimeout(imageSwitchTimer);
             modalImage.src = nextSrc;
+            modalImage.alt = artwork.title;
             window.requestAnimationFrame(() => {
                 modalImage.classList.remove("is-switching");
             });
@@ -128,11 +129,13 @@
         preload.onerror = () => {
             window.clearTimeout(imageSwitchTimer);
             modalImage.src = nextSrc;
+            modalImage.alt = artwork.title;
             modalImage.classList.remove("is-switching");
         };
 
         imageSwitchTimer = window.setTimeout(() => {
             modalImage.src = nextSrc;
+            modalImage.alt = artwork.title;
             modalImage.classList.remove("is-switching");
         }, 450);
 
