@@ -133,13 +133,16 @@
         <button class="modal-close" type="button" data-modal-close aria-label="닫기">&times;</button>
         <div class="modal-shell">
             <figure class="modal-stage">
+                <button class="modal-nav modal-nav-prev" type="button" data-modal-prev aria-label="이전 사진">‹</button>
                 <img id="modal-image" src="" alt="">
+                <button class="modal-nav modal-nav-next" type="button" data-modal-next aria-label="다음 사진">›</button>
             </figure>
             <aside class="modal-panel">
                 <p class="eyebrow">Work Detail</p>
                 <h2 id="modal-title"></h2>
                 <p class="modal-location" id="modal-location"></p>
                 <p class="modal-description" id="modal-description"></p>
+                <p class="modal-counter" id="modal-counter" aria-live="polite"></p>
                 <div class="modal-thumbnails" id="modal-thumbnails" aria-label="작품 추가 사진"></div>
             </aside>
         </div>

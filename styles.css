@@ -398,16 +398,20 @@ p {
     position: fixed;
     inset: 0;
     z-index: 300;
-    display: none;
+    display: grid;
+    place-items: center;
     padding: 48px;
     background: rgba(10, 10, 10, 0.94);
     color: var(--white);
     overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 240ms ease;
 }
 
 .artwork-modal.is-open {
-    display: grid;
-    place-items: center;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .modal-close {
@@ -431,9 +435,16 @@ p {
     grid-template-columns: minmax(0, 1fr) 300px;
     gap: 38px;
     align-items: end;
+    transform: translate3d(0, 18px, 0);
+    transition: transform 320ms ease;
+}
+
+.artwork-modal.is-open .modal-shell {
+    transform: translate3d(0, 0, 0);
 }
 
 .modal-stage {
+    position: relative;
     margin: 0;
     min-height: 280px;
     background: #111;
@@ -444,6 +455,35 @@ p {
     width: 100%;
     max-height: 78vh;
     object-fit: contain;
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    width: 44px;
+    height: 64px;
+    border: 0;
+    background: rgba(0, 0, 0, 0.28);
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 2.25rem;
+    line-height: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background var(--ease), color var(--ease), opacity var(--ease);
+}
+
+.modal-nav:hover {
+    background: rgba(0, 0, 0, 0.52);
+    color: var(--white);
+}
+
+.modal-nav-prev {
+    left: 0;
+}
+
+.modal-nav-next {
+    right: 0;
 }
 
 .modal-panel {
@@ -474,10 +514,24 @@ p {
     margin-bottom: 24px;
 }
 
+.modal-counter {
+    margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
 .modal-thumbnails {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
+}
+
+.artwork-modal.has-single-image .modal-thumbnails,
+.artwork-modal.has-single-image .modal-counter,
+.artwork-modal.has-single-image .modal-nav {
+    display: none;
 }
 
 .modal-thumbnail {
@@ -542,6 +596,12 @@ p {
 
     .modal-stage img {
         max-height: 58vh;
+    }
+
+    .modal-nav {
+        width: 40px;
+        height: 56px;
+        font-size: 2rem;
     }
 }
 

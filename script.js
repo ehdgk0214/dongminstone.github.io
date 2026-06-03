@@ -7,7 +7,10 @@
     const modalLocation = document.getElementById("modal-location");
     const modalDescription = document.getElementById("modal-description");
     const modalThumbnails = document.getElementById("modal-thumbnails");
+    const modalCounter = document.getElementById("modal-counter");
     const closeButton = modal.querySelector("[data-modal-close]");
+    const previousButton = modal.querySelector("[data-modal-prev]");
+    const nextButton = modal.querySelector("[data-modal-next]");
 
     let activeArtworkIndex = 0;
     let activeImageIndex = 0;
@@ -102,12 +105,21 @@
         activeImageIndex = (index + images.length) % images.length;
         modalImage.src = images[activeImageIndex];
         modalImage.alt = artwork.title;
+        modalCounter.textContent = `${activeImageIndex + 1} / ${images.length}`;
 
         modalThumbnails.querySelectorAll(".modal-thumbnail").forEach((thumbnail, thumbnailIndex) => {
             const isActive = thumbnailIndex === activeImageIndex;
             thumbnail.classList.toggle("is-active", isActive);
             thumbnail.setAttribute("aria-current", isActive ? "true" : "false");
         });
+    }
+
+    function showPreviousImage() {
+        selectImage(activeImageIndex - 1);
+    }
+
+    function showNextImage() {
+        selectImage(activeImageIndex + 1);
     }
 
     function openModal(index) {
@@ -121,6 +133,7 @@
         modalTitle.textContent = artwork.title;
         modalLocation.textContent = artwork.location;
         modalDescription.textContent = artwork.description;
+        modal.classList.toggle("has-single-image", images.length < 2);
         renderThumbnails(images);
         selectImage(0);
 
@@ -135,6 +148,7 @@
         modal.setAttribute("aria-hidden", "true");
         document.body.classList.remove("modal-open");
         modalImage.removeAttribute("src");
+        modal.classList.remove("has-single-image");
 
         if (lastFocusedElement) {
             lastFocusedElement.focus();
@@ -150,11 +164,11 @@
         }
 
         if (event.key === "ArrowRight") {
-            selectImage(activeImageIndex + 1);
+            showNextImage();
         }
 
         if (event.key === "ArrowLeft") {
-            selectImage(activeImageIndex - 1);
+            showPreviousImage();
         }
     }
 
@@ -176,6 +190,8 @@
     }
 
     closeButton.addEventListener("click", closeModal);
+    previousButton.addEventListener("click", showPreviousImage);
+    nextButton.addEventListener("click", showNextImage);
     modal.addEventListener("click", (event) => {
         if (event.target === modal) closeModal();
     });
