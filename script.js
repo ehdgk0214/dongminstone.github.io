@@ -12,6 +12,7 @@
     let activeArtworkIndex = 0;
     let activeImageIndex = 0;
     let lastFocusedElement = null;
+    let parallaxTicking = false;
 
     function createTextElement(tag, text, className) {
         const element = document.createElement(tag);
@@ -157,11 +158,31 @@
         }
     }
 
+    function updateHeroParallax() {
+        const hero = document.querySelector(".hero");
+        if (!hero) return;
+
+        const heroHeight = hero.offsetHeight;
+        const offset = Math.min(window.scrollY * 0.5, heroHeight * 0.55);
+        document.documentElement.style.setProperty("--hero-parallax", `${offset}px`);
+        parallaxTicking = false;
+    }
+
+    function requestHeroParallaxUpdate() {
+        if (parallaxTicking) return;
+
+        parallaxTicking = true;
+        window.requestAnimationFrame(updateHeroParallax);
+    }
+
     closeButton.addEventListener("click", closeModal);
     modal.addEventListener("click", (event) => {
         if (event.target === modal) closeModal();
     });
     window.addEventListener("keydown", handleModalKeys);
+    window.addEventListener("scroll", requestHeroParallaxUpdate, { passive: true });
+    window.addEventListener("resize", requestHeroParallaxUpdate);
 
     renderGallery();
+    updateHeroParallax();
 })();

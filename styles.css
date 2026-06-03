@@ -30,6 +30,11 @@ body.modal-open {
     overflow: hidden;
 }
 
+main {
+    position: relative;
+    isolation: isolate;
+}
+
 img {
     max-width: 100%;
 }
@@ -83,6 +88,8 @@ textarea {
 .hero {
     min-height: 88vh;
     padding: 150px 24px 80px;
+    position: relative;
+    z-index: 1;
     display: grid;
     place-items: center;
     text-align: center;
@@ -90,10 +97,14 @@ textarea {
     background:
         linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.42)),
         url("image%20folder/dongmin_background.jpg") center / cover;
+    transform: translate3d(0, var(--hero-parallax, 0px), 0);
+    will-change: transform;
 }
 
 .hero-copy {
     width: min(900px, 100%);
+    transform: translate3d(0, calc(var(--hero-parallax, 0px) * 0.35), 0);
+    will-change: transform;
 }
 
 .eyebrow {
@@ -170,8 +181,12 @@ p {
 }
 
 .trust-strip {
+    position: sticky;
+    top: 76px;
+    z-index: 2;
     background: var(--soft);
     border-bottom: 1px solid var(--line);
+    box-shadow: 0 -1px 0 var(--soft);
 }
 
 .trust-inner {
@@ -190,6 +205,11 @@ p {
     width: min(var(--max), calc(100% - 40px));
     margin: 0 auto;
     padding: 104px 0;
+    position: relative;
+    z-index: 3;
+    background: var(--white);
+    box-shadow: 0 0 0 100vmax var(--white);
+    clip-path: inset(0 -100vmax);
 }
 
 .section-heading {
