@@ -34,9 +34,26 @@ body.intro-active {
     overflow: hidden;
 }
 
+html.intro-seen body.intro-active {
+    overflow: auto;
+}
+
+body.intro-active .site-nav,
+body.intro-active main,
+body.intro-active .site-footer {
+    opacity: 0;
+}
+
+html.intro-seen body.intro-active .site-nav,
+html.intro-seen body.intro-active main,
+html.intro-seen body.intro-active .site-footer {
+    opacity: 1;
+}
+
 main {
     position: relative;
     isolation: isolate;
+    transition: opacity 360ms ease;
 }
 
 img {
@@ -64,10 +81,16 @@ textarea {
         linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.34)),
         url("image%20folder/dongmin_background.jpg") center / cover;
     opacity: 1;
-    transition: opacity 520ms ease, visibility 520ms ease;
+    transition: opacity 620ms ease, visibility 620ms ease;
 }
 
 .intro-screen.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+html.intro-seen .intro-screen {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -98,6 +121,11 @@ textarea {
 .intro-enter:focus-visible {
     color: rgba(255, 255, 255, 0.9);
     transform: scale(1.08);
+}
+
+.intro-screen.is-hidden .intro-enter {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .intro-enter:focus-visible {

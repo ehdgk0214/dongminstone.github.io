@@ -11,6 +11,7 @@
     const siteNav = document.querySelector(".site-nav");
     const introScreen = document.getElementById("intro-screen");
     const introEnter = document.getElementById("intro-enter");
+    const introReplay = document.querySelector("[data-intro-replay]");
     const closeButton = modal.querySelector("[data-modal-close]");
     const previousButton = modal.querySelector("[data-modal-prev]");
     const nextButton = modal.querySelector("[data-modal-next]");
@@ -21,6 +22,7 @@
     let parallaxTicking = false;
     let modalCleanupTimer = null;
     let imageSwitchTimer = null;
+    const INTRO_SEEN_KEY = "dongminIntroSeen";
 
     function createTextElement(tag, text, className) {
         const element = document.createElement(tag);
@@ -280,12 +282,45 @@
         });
     }
 
-    function enterSite() {
-        introScreen?.classList.add("is-hidden");
+    function enterSite({ remember = true } = {}) {
+        if (!introScreen) return;
+
+        if (remember) {
+            sessionStorage.setItem(INTRO_SEEN_KEY, "true");
+        }
+
+        introScreen.classList.add("is-hidden");
         document.body.classList.remove("intro-active");
     }
 
-    introEnter?.addEventListener("click", enterSite);
+    function showIntro() {
+        if (!introScreen) return;
+
+        window.scrollTo(0, 0);
+        sessionStorage.removeItem(INTRO_SEEN_KEY);
+        document.documentElement.classList.remove("intro-seen");
+        introScreen.classList.remove("is-hidden");
+        document.body.classList.add("intro-active");
+        introEnter?.focus({ preventScroll: true });
+    }
+
+    function initializeIntro() {
+        if (!introScreen) return;
+
+        if (sessionStorage.getItem(INTRO_SEEN_KEY) === "true") {
+            introScreen.classList.add("is-hidden");
+            document.body.classList.remove("intro-active");
+            return;
+        }
+
+        document.body.classList.add("intro-active");
+    }
+
+    introEnter?.addEventListener("click", () => enterSite());
+    introReplay?.addEventListener("click", (event) => {
+        event.preventDefault();
+        showIntro();
+    });
     closeButton.addEventListener("click", closeModal);
     previousButton.addEventListener("click", showPreviousImage);
     nextButton.addEventListener("click", showNextImage);
@@ -300,6 +335,7 @@
     window.addEventListener("resize", requestHeroParallaxUpdate);
 
     renderGallery();
+    initializeIntro();
     updateHeroParallax();
     updateNavState();
 })();
