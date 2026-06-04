@@ -399,6 +399,103 @@ p {
     text-transform: uppercase;
 }
 
+.craft-section,
+.capacity-section {
+    border-top: 1px solid var(--line);
+}
+
+.craft-layout,
+.capacity-layout {
+    display: grid;
+    gap: 72px;
+}
+
+.craft-layout {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: center;
+}
+
+.capacity-layout {
+    grid-template-columns: minmax(280px, 0.42fr) minmax(0, 0.58fr);
+    align-items: start;
+}
+
+.craft-copy h2,
+.capacity-copy h2 {
+    margin-bottom: 24px;
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.2;
+    word-break: keep-all;
+}
+
+.craft-copy p:not(.eyebrow),
+.capacity-copy p:not(.eyebrow) {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 1.02rem;
+}
+
+.craft-copy .feature-note,
+.capacity-copy .feature-note {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+}
+
+.craft-figure,
+.capacity-photo {
+    margin: 0;
+    overflow: hidden;
+    background: var(--soft);
+}
+
+.craft-figure {
+    aspect-ratio: 4 / 5;
+}
+
+.capacity-photo {
+    aspect-ratio: 4 / 3;
+}
+
+.craft-figure img,
+.capacity-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.capacity-media {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.capacity-photo-wide {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+}
+
+.capacity-list {
+    margin: 34px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    color: var(--ink);
+    font-size: 0.95rem;
+    list-style: none;
+}
+
+.capacity-list li {
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+}
+
+.capacity-list li:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
 .process-section {
     border-top: 1px solid var(--line);
 }
@@ -705,10 +802,17 @@ p {
         grid-column: span 6;
     }
 
+    .craft-layout,
+    .capacity-layout,
     .process-grid,
     .contact-layout,
     .modal-shell {
         grid-template-columns: 1fr;
+    }
+
+    .craft-layout,
+    .capacity-layout {
+        gap: 42px;
     }
 
     .modal-shell {
@@ -763,6 +867,29 @@ p {
     .trust-inner,
     .gallery-grid {
         grid-template-columns: 1fr;
+    }
+
+    .capacity-media {
+        grid-template-columns: 1fr;
+    }
+
+    .capacity-photo-wide {
+        grid-column: auto;
+    }
+
+    .craft-copy h2,
+    .capacity-copy h2 {
+        margin-bottom: 18px;
+    }
+
+    .craft-copy p:not(.eyebrow),
+    .capacity-copy p:not(.eyebrow) {
+        font-size: 0.98rem;
+    }
+
+    .feature-note {
+        margin-top: 22px;
+        padding-top: 20px;
     }
 
     .trust-inner {
