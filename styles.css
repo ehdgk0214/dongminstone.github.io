@@ -793,6 +793,19 @@ p {
     margin-bottom: 4px;
 }
 
+.footer-credit {
+    text-align: right;
+}
+
+.footer-credit a {
+    color: rgba(255, 255, 255, 0.78);
+    transition: color var(--ease);
+}
+
+.footer-credit a:hover {
+    color: var(--white);
+}
+
 @media (max-width: 900px) {
     .gallery-item,
     .gallery-item:nth-child(6n + 1),
@@ -928,6 +941,11 @@ p {
 
     .site-footer {
         display: block;
+    }
+
+    .footer-credit {
+        margin-top: 24px;
+        text-align: left;
     }
 }
 
