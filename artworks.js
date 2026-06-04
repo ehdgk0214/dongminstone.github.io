@@ -21,6 +21,15 @@ window.DONGMIN_ARTWORKS = [
         ]
     },
     {
+        title: "대구 남구 6.25 참전유공자 명비",
+        location: "대구 낙동강 승전기념관",
+        description: "대구 남구 6.25 참전유공자를 기리는 석재 명비",
+        coverImage: imagePath("thumb/dm_625.webp"),
+        images: [
+            imagePath("dm_625.jpg")
+        ]
+    },
+    {
         title: "남사예담촌 표지석",
         location: "경남 산청군 남사예담촌",
         description: "마을의 정체성과 결을 담은 석재 표지석",
@@ -58,15 +67,6 @@ window.DONGMIN_ARTWORKS = [
         ]
     },
     {
-        title: "3.1운동기념비",
-        location: "대구 중구 동성로",
-        description: "도심 공간에 놓인 역사 기념 석조물",
-        coverImage: imagePath("thumb/dm_31.webp"),
-        images: [
-            imagePath("dm_31.jpg")
-        ]
-    },
-    {
         title: "석재 조각 아카이브",
         location: "동민조형석재",
         description: "제작 과정과 완성작을 함께 담은 조각 기록",
@@ -74,6 +74,8 @@ window.DONGMIN_ARTWORKS = [
         images: [
             imagePath("dm_budd1.jpg"),
             imagePath("dm_budd2.jpg"),
+            imagePath("dm_budd3.jpg"),
+            imagePath("dm_31.jpg"),
             imagePath("dm_family.jpg"),
             imagePath("dm_xiamen.jpg"),
             imagePath("dongmin_bud.jpg"),

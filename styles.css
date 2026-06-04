@@ -279,16 +279,6 @@ p {
     box-shadow: 0 -1px 0 var(--soft);
 }
 
-.trust-strip::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -76px;
-    height: 76px;
-    background: var(--soft);
-}
-
 .trust-inner {
     width: min(var(--max), calc(100% - 40px));
     margin: 0 auto;
@@ -296,9 +286,17 @@ p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    align-items: center;
     color: var(--muted);
     font-size: 0.92rem;
+    line-height: 1.35;
     text-align: center;
+}
+
+.trust-inner span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .section {
@@ -855,11 +853,6 @@ p {
         top: 66px;
     }
 
-    .trust-strip::before {
-        top: -66px;
-        height: 66px;
-    }
-
     .hero-actions {
         display: grid;
     }
@@ -894,6 +887,10 @@ p {
 
     .trust-inner {
         text-align: left;
+    }
+
+    .trust-inner span {
+        justify-content: flex-start;
     }
 
     .section {
