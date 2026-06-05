@@ -997,14 +997,18 @@ p {
 
     .capacity-group {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 10px;
+    }
+
+    .capacity-group[aria-label="중장비"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .capacity-group-title {
         display: block;
         grid-column: 1 / -1;
-        margin: 0 0 2px;
+        margin: 0 0 4px;
         color: var(--muted);
         font-size: 0.76rem;
         font-weight: 700;
@@ -1016,6 +1020,11 @@ p {
     .capacity-photo-wide {
         grid-column: auto;
         aspect-ratio: 4 / 3;
+    }
+
+    .capacity-group .capacity-photo:first-of-type {
+        grid-column: 1 / -1;
+        aspect-ratio: 16 / 10;
     }
 }
 
