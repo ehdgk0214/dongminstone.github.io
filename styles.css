@@ -192,7 +192,7 @@ html.intro-seen .intro-screen {
 }
 
 .hero-copy {
-    width: min(900px, 100%);
+    width: min(1120px, 100%);
     transform: translate3d(0, calc(var(--hero-parallax, 0px) * 0.35), 0);
     will-change: transform;
 }
@@ -217,19 +217,28 @@ p {
     margin-top: 0;
 }
 
+.no-break {
+    white-space: nowrap;
+}
+
 .hero h1 {
     margin-bottom: 18px;
     font-size: clamp(2.4rem, 4.4vw, 4.5rem);
     line-height: 1.16;
     font-weight: 700;
     word-break: keep-all;
+    white-space: nowrap;
 }
 
 .mobile-break {
     display: none;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 640px) and (orientation: portrait) {
+    .hero h1 {
+        white-space: normal;
+    }
+
     .mobile-break {
         display: block;
     }
@@ -261,8 +270,9 @@ p {
 
 .button-fill {
     color: var(--ink);
-    background: var(--white);
-    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(6px);
 }
 
 .button:hover {
@@ -274,9 +284,10 @@ p {
     position: sticky;
     top: 76px;
     z-index: 2;
-    background: var(--soft);
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 -1px 0 var(--soft);
+    background: rgba(244, 241, 235, 0.88);
+    border-bottom: 1px solid rgba(221, 213, 200, 0.72);
+    box-shadow: 0 -1px 0 rgba(244, 241, 235, 0.88);
+    backdrop-filter: blur(8px);
 }
 
 .trust-inner {
@@ -426,11 +437,17 @@ p {
     word-break: keep-all;
 }
 
+.craft-copy h2 span {
+    display: block;
+}
+
 .craft-copy p:not(.eyebrow),
 .capacity-copy p:not(.eyebrow) {
     margin-bottom: 0;
     color: var(--muted);
     font-size: 1.02rem;
+    word-break: keep-all;
+    overflow-wrap: normal;
 }
 
 .craft-copy .feature-note,
@@ -490,21 +507,37 @@ p {
 
 .capacity-media {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    gap: 34px;
 }
 
 .capacity-group {
-    display: contents;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.capacity-group[aria-label="주요 중장비"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .capacity-group-title {
-    display: none;
+    display: block;
+    grid-column: 1 / -1;
+    margin: 0 0 2px;
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .capacity-photo-wide {
+    grid-column: auto;
+}
+
+.capacity-group .capacity-photo:first-of-type {
     grid-column: 1 / -1;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 10;
 }
 
 .capacity-photo:focus-visible {
@@ -603,6 +636,13 @@ p {
 
 .contact-methods p {
     margin-bottom: 0;
+}
+
+.contact-note {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
 }
 
 .inquiry-form {
@@ -912,14 +952,6 @@ p {
         grid-template-columns: 1fr;
     }
 
-    .capacity-media {
-        grid-template-columns: 1fr;
-    }
-
-    .capacity-photo-wide {
-        grid-column: auto;
-    }
-
     .craft-copy h2,
     .capacity-copy h2 {
         margin-bottom: 18px;
@@ -996,35 +1028,16 @@ p {
     }
 
     .capacity-group {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 10px;
     }
 
-    .capacity-group[aria-label="중장비"] {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     .capacity-group-title {
-        display: block;
-        grid-column: 1 / -1;
         margin: 0 0 4px;
-        color: var(--muted);
-        font-size: 0.76rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
     }
 
     .capacity-photo,
     .capacity-photo-wide {
-        grid-column: auto;
         aspect-ratio: 4 / 3;
-    }
-
-    .capacity-group .capacity-photo:first-of-type {
-        grid-column: 1 / -1;
-        aspect-ratio: 16 / 10;
     }
 }
 
