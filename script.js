@@ -18,7 +18,7 @@
     const equipmentTriggers = document.querySelectorAll("[data-equipment-group]");
     const equipmentGroups = {
         cutting: {
-            title: "절삭기계 파트",
+            title: "절삭기계",
             location: "대형 조형물을 위한 절삭·가공 설비",
             description: "대형 석재 절단과 형상 가공에 쓰이는 주요 절삭 설비입니다.",
             images: [
@@ -30,9 +30,9 @@
             ]
         },
         heavy: {
-            title: "중장비 파트",
-            location: "대형 석재 운반 및 현장 대응",
-            description: "대형 석재 이동과 설치 준비 과정에 활용하는 중장비 기록입니다.",
+            title: "중장비",
+            location: "대형 석재 운반",
+            description: "대형 석재 이동과 설치 준비 과정에 활용하는 주요 중장비입니다.",
             images: [
                 "image%20folder/dm_fork1.webp",
                 "image%20folder/dm_fork2.webp",
