@@ -15,8 +15,33 @@
     const closeButton = modal.querySelector("[data-modal-close]");
     const previousButton = modal.querySelector("[data-modal-prev]");
     const nextButton = modal.querySelector("[data-modal-next]");
+    const equipmentTriggers = document.querySelectorAll("[data-equipment-group]");
+    const equipmentGroups = {
+        cutting: {
+            title: "절삭기계 파트",
+            location: "대형 조형물을 위한 절삭·가공 설비",
+            description: "대형 석재 절단과 형상 가공에 쓰이는 주요 절삭 설비입니다.",
+            images: [
+                "image%20folder/dm_100.jpg",
+                "image%20folder/dm_50.jpg",
+                "image%20folder/dm_40.jpg",
+                "image%20folder/dm_wire.jpg",
+                "image%20folder/dm_wire2.jpg"
+            ]
+        },
+        heavy: {
+            title: "중장비 파트",
+            location: "대형 석재 운반 및 현장 대응",
+            description: "대형 석재 이동과 설치 준비 과정에 활용하는 중장비 기록입니다.",
+            images: [
+                "image%20folder/dm_fork1.webp",
+                "image%20folder/dm_fork2.webp",
+                "image%20folder/dm_fork3.webp"
+            ]
+        }
+    };
 
-    let activeArtworkIndex = 0;
+    let activeImageGroup = null;
     let activeImageIndex = 0;
     let lastFocusedElement = null;
     let parallaxTicking = false;
@@ -32,6 +57,8 @@
     }
 
     function getArtworkImages(artwork) {
+        if (!artwork) return [];
+
         if (Array.isArray(artwork.images) && artwork.images.length > 0) {
             return artwork.images;
         }
@@ -108,8 +135,9 @@
     }
 
     function selectImage(index) {
-        const artwork = artworks[activeArtworkIndex];
-        const images = getArtworkImages(artwork);
+        const imageGroup = activeImageGroup;
+        const images = getArtworkImages(imageGroup);
+        if (!imageGroup || images.length === 0) return;
 
         activeImageIndex = (index + images.length) % images.length;
         modalCounter.textContent = `${activeImageIndex + 1} / ${images.length}`;
@@ -123,7 +151,7 @@
         preload.onload = () => {
             window.clearTimeout(imageSwitchTimer);
             modalImage.src = nextSrc;
-            modalImage.alt = artwork.title;
+            modalImage.alt = imageGroup.title;
             window.requestAnimationFrame(() => {
                 modalImage.classList.remove("is-switching");
             });
@@ -133,13 +161,13 @@
         preload.onerror = () => {
             window.clearTimeout(imageSwitchTimer);
             modalImage.src = nextSrc;
-            modalImage.alt = artwork.title;
+            modalImage.alt = imageGroup.title;
             modalImage.classList.remove("is-switching");
         };
 
         imageSwitchTimer = window.setTimeout(() => {
             modalImage.src = nextSrc;
-            modalImage.alt = artwork.title;
+            modalImage.alt = imageGroup.title;
             modalImage.classList.remove("is-switching");
         }, 450);
 
@@ -176,19 +204,23 @@
 
     function openModal(index) {
         const artwork = artworks[index];
-        const images = getArtworkImages(artwork);
-        if (!artwork || images.length === 0) return;
+        openImageGroup(artwork);
+    }
+
+    function openImageGroup(imageGroup, initialIndex = 0) {
+        const images = getArtworkImages(imageGroup);
+        if (!imageGroup || images.length === 0) return;
 
         window.clearTimeout(modalCleanupTimer);
-        activeArtworkIndex = index;
+        activeImageGroup = imageGroup;
         lastFocusedElement = document.activeElement;
 
-        modalTitle.textContent = artwork.title;
-        modalLocation.textContent = artwork.location;
-        modalDescription.textContent = artwork.description;
+        modalTitle.textContent = imageGroup.title;
+        modalLocation.textContent = imageGroup.location || "";
+        modalDescription.textContent = imageGroup.description || "";
         modal.classList.toggle("has-single-image", images.length < 2);
         renderThumbnails(images);
-        selectImage(0);
+        selectImage(initialIndex);
 
         modal.classList.add("is-open");
         modal.setAttribute("aria-hidden", "false");
@@ -211,6 +243,7 @@
             modalCounter.textContent = "";
             modalThumbnails.innerHTML = "";
             modal.classList.remove("has-single-image");
+            activeImageGroup = null;
         }, 260);
 
         if (lastFocusedElement) {
@@ -320,6 +353,13 @@
     introReplay?.addEventListener("click", (event) => {
         event.preventDefault();
         showIntro();
+    });
+    equipmentTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+            const imageGroup = equipmentGroups[trigger.dataset.equipmentGroup];
+            const initialIndex = Number.parseInt(trigger.dataset.imageIndex, 10) || 0;
+            openImageGroup(imageGroup, initialIndex);
+        });
     });
     closeButton.addEventListener("click", closeModal);
     previousButton.addEventListener("click", showPreviousImage);

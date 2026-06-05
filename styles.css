@@ -465,6 +465,13 @@ p {
 
 .capacity-photo {
     aspect-ratio: 4 / 3;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    appearance: none;
+    cursor: pointer;
+    color: inherit;
 }
 
 .craft-figure img,
@@ -487,9 +494,22 @@ p {
     gap: 14px;
 }
 
+.capacity-group {
+    display: contents;
+}
+
+.capacity-group-title {
+    display: none;
+}
+
 .capacity-photo-wide {
     grid-column: 1 / -1;
     aspect-ratio: 16 / 9;
+}
+
+.capacity-photo:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 4px;
 }
 
 .capacity-list {
@@ -969,6 +989,33 @@ p {
 @media (max-width: 640px) and (orientation: portrait) {
     .intro-screen {
         background-position: calc(50% - 900px) center;
+    }
+
+    .capacity-media {
+        gap: 30px;
+    }
+
+    .capacity-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .capacity-group-title {
+        display: block;
+        grid-column: 1 / -1;
+        margin: 0 0 2px;
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .capacity-photo,
+    .capacity-photo-wide {
+        grid-column: auto;
+        aspect-ratio: 4 / 3;
     }
 }
 
