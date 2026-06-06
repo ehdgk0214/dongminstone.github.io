@@ -1155,8 +1155,14 @@ p {
 }
 
 @media (max-width: 640px) and (orientation: portrait) {
-    .intro-screen {
+    .intro-screen,
+    .hero {
         background-position: calc(50% - 900px) center;
+    }
+
+    html.day-background .intro-screen,
+    html.day-background .hero {
+        background-position: calc(50% + 900px) center;
     }
 
     .capacity-media {
