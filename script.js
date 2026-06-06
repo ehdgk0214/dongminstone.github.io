@@ -86,8 +86,9 @@
             const image = document.createElement("img");
             image.src = artwork.coverImage;
             image.alt = artwork.title;
-            image.loading = index < 2 ? "eager" : "lazy";
+            image.loading = "lazy";
             image.decoding = "async";
+            image.fetchPriority = "low";
 
             const info = document.createElement("div");
             info.className = "gallery-info";

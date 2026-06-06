@@ -17,20 +17,29 @@
     <meta name="twitter:description" content="조소 전공 대표가 직접 이끄는 석재 조형물, 기념비, 추모비, 표지석 제작 포트폴리오입니다.">
     <meta name="twitter:image" content="https://dongminstone.com/image%20folder/og-image.jpg">
     <link rel="icon" href="image%20folder/dongmin_logo1.jpg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
     <script>
         (() => {
             const themeOverrideKey = "dongminThemeOverride";
             const now = Date.now();
+            let activeTheme = "night";
             const applyTheme = (theme) => {
+                activeTheme = theme;
                 document.documentElement.classList.toggle("day-background", theme === "day");
             };
             const applyTimeTheme = () => {
                 const hour = new Date().getHours();
                 applyTheme(hour >= 6 && hour < 18 ? "day" : "night");
+            };
+            const preloadSceneImage = () => {
+                const preload = document.createElement("link");
+                preload.rel = "preload";
+                preload.as = "image";
+                preload.href = activeTheme === "day"
+                    ? "image%20folder/dongmin_background1.webp"
+                    : "image%20folder/dongmin_background.webp";
+                preload.fetchPriority = "high";
+                preload.setAttribute("fetchpriority", "high");
+                document.head.append(preload);
             };
 
             try {
@@ -44,12 +53,15 @@
             } catch {
                 applyTimeTheme();
             }
+
+            preloadSceneImage();
         })();
 
         if (sessionStorage.getItem("dongminIntroSeen") === "true") {
             document.documentElement.classList.add("intro-seen");
         }
     </script>
+    <link rel="stylesheet" href="styles.css">
     <script src="artworks.js" defer></script>
     <script src="script.js" defer></script>
 </head>
@@ -61,7 +73,7 @@
     <nav class="site-nav" aria-label="주요 메뉴">
         <div class="nav-inner">
             <a class="brand" href="#top" aria-label="동민조형석재 홈" data-intro-replay>
-                <img src="image%20folder/dongminlogologo.png" alt="동민조형석재">
+                <img src="image%20folder/dongminlogologo.webp" alt="동민조형석재" width="121" height="40" decoding="async">
             </a>
             <div class="nav-links">
                 <button class="theme-toggle" type="button" id="theme-toggle" aria-label="낮 밤 화면 전환" aria-pressed="false">
@@ -112,7 +124,7 @@
                 </div>
                 <div class="craft-media" aria-label="조소 전공 대표의 작업 기록">
                     <figure class="craft-figure craft-figure-main">
-                        <img src="image%20folder/dm_boss.jpg" alt="조소 전공 대표의 석재 조각 작업 장면" loading="lazy" decoding="async">
+                        <img src="image%20folder/dm_boss.webp" alt="조소 전공 대표의 석재 조각 작업 장면" loading="lazy" decoding="async">
                     </figure>
                     <div class="craft-pair">
                         <figure class="craft-figure craft-figure-small">
@@ -123,7 +135,7 @@
                         </figure>
                     </div>
                     <figure class="craft-figure craft-figure-past">
-                        <img src="image%20folder/dm_past.jpg" alt="동민조형석재의 과거 석재 작업 기록" loading="lazy" decoding="async">
+                        <img src="image%20folder/dm_past.webp" alt="동민조형석재의 과거 석재 작업 기록" loading="lazy" decoding="async">
                     </figure>
                 </div>
             </div>
