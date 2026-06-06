@@ -7,6 +7,37 @@
     --white: #ffffff;
     --max: 1180px;
     --ease: 220ms ease;
+    --scene-image: url("image%20folder/dongmin_background.jpg");
+    --scene-overlay: linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.34));
+    --scene-text: var(--white);
+    --scene-muted: rgba(255, 255, 255, 0.82);
+    --scene-eyebrow: rgba(255, 255, 255, 0.72);
+    --scene-line: rgba(255, 255, 255, 0.82);
+    --scene-fill-bg: rgba(255, 255, 255, 0.78);
+    --scene-fill-border: rgba(255, 255, 255, 0.82);
+    --scene-fill-text: var(--ink);
+    --scene-hover-bg: rgba(255, 255, 255, 0.12);
+    --scene-hover-text: var(--white);
+    --intro-enter-color: rgba(255, 255, 255, 0.7);
+    --intro-enter-hover: rgba(255, 255, 255, 0.9);
+    --intro-focus: rgba(255, 255, 255, 0.62);
+}
+
+html.day-background {
+    --scene-image: url("image%20folder/dongmin_background1.jpg");
+    --scene-overlay: linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.24));
+    --scene-text: var(--ink);
+    --scene-muted: rgba(28, 27, 24, 0.78);
+    --scene-eyebrow: rgba(28, 27, 24, 0.58);
+    --scene-line: rgba(28, 27, 24, 0.54);
+    --scene-fill-bg: rgba(28, 27, 24, 0.86);
+    --scene-fill-border: rgba(28, 27, 24, 0.86);
+    --scene-fill-text: var(--white);
+    --scene-hover-bg: rgba(28, 27, 24, 0.08);
+    --scene-hover-text: var(--ink);
+    --intro-enter-color: rgba(28, 27, 24, 0.62);
+    --intro-enter-hover: rgba(28, 27, 24, 0.86);
+    --intro-focus: rgba(28, 27, 24, 0.45);
 }
 
 * {
@@ -78,10 +109,27 @@ textarea {
     display: grid;
     place-items: center;
     background:
-        linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.34)),
-        url("image%20folder/dongmin_background.jpg") center / cover;
+        var(--scene-overlay),
+        var(--scene-image) center / cover;
     opacity: 1;
     transition: opacity 620ms ease, visibility 620ms ease;
+}
+
+.intro-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+html.day-background .intro-screen::after {
+    background: radial-gradient(
+        circle at center,
+        rgba(246, 243, 238, 0.46) 0%,
+        rgba(246, 243, 238, 0.22) 28%,
+        rgba(246, 243, 238, 0.04) 58%,
+        transparent 82%
+    );
 }
 
 .intro-screen.is-hidden {
@@ -98,9 +146,10 @@ html.intro-seen .intro-screen {
 
 .intro-enter {
     position: relative;
+    z-index: 1;
     border: 0;
     background: transparent;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--intro-enter-color);
     padding: 18px 28px;
     font-size: 0.82rem;
     font-weight: 500;
@@ -111,6 +160,10 @@ html.intro-seen .intro-screen {
     transition: color var(--ease), opacity var(--ease), transform var(--ease);
 }
 
+html.day-background .intro-enter {
+    text-shadow: 0 1px 14px rgba(246, 243, 238, 0.76);
+}
+
 .intro-enter::before {
     content: "";
     position: absolute;
@@ -119,7 +172,7 @@ html.intro-seen .intro-screen {
 
 .intro-enter:hover,
 .intro-enter:focus-visible {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--intro-enter-hover);
     transform: scale(1.08);
 }
 
@@ -129,7 +182,7 @@ html.intro-seen .intro-screen {
 }
 
 .intro-enter:focus-visible {
-    outline: 1px solid rgba(255, 255, 255, 0.62);
+    outline: 1px solid var(--intro-focus);
     outline-offset: 4px;
 }
 
@@ -166,6 +219,7 @@ html.intro-seen .intro-screen {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 30px;
     font-size: 0.95rem;
     color: var(--muted);
@@ -175,26 +229,92 @@ html.intro-seen .intro-screen {
     color: var(--ink);
 }
 
+.theme-toggle {
+    width: 38px;
+    height: 20px;
+    padding: 2px;
+    border: 1px solid rgba(28, 27, 24, 0.24);
+    border-radius: 999px;
+    background: rgba(28, 27, 24, 0.12);
+    cursor: pointer;
+}
+
+.theme-toggle span {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(28, 27, 24, 0.66);
+    transition: transform var(--ease), background var(--ease);
+}
+
+html.day-background .theme-toggle span {
+    transform: translateX(18px);
+    background: rgba(28, 27, 24, 0.88);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid rgba(28, 27, 24, 0.32);
+    outline-offset: 3px;
+}
+
 .hero {
     min-height: 88vh;
     padding: 150px 24px 80px;
     position: relative;
     z-index: 1;
+    isolation: isolate;
     display: grid;
     place-items: center;
     text-align: center;
-    color: var(--white);
+    color: var(--scene-text);
     background:
-        linear-gradient(rgba(28, 27, 24, 0.38), rgba(28, 27, 24, 0.44)),
-        url("image%20folder/dongmin_background.jpg") center / cover;
+        var(--scene-overlay),
+        var(--scene-image) center / cover;
     transform: translate3d(0, var(--hero-parallax, 0px), 0);
     will-change: transform;
 }
 
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+html.day-background .hero::after {
+    background: radial-gradient(
+        circle at center,
+        rgba(246, 243, 238, 0.56) 0%,
+        rgba(246, 243, 238, 0.3) 34%,
+        rgba(246, 243, 238, 0.08) 62%,
+        transparent 84%
+    );
+}
+
 .hero-copy {
     width: min(1120px, 100%);
+    position: relative;
+    z-index: 1;
     transform: translate3d(0, calc(var(--hero-parallax, 0px) * 0.35), 0);
     will-change: transform;
+}
+
+html.day-background .hero h1,
+html.day-background .hero p {
+    text-shadow: 0 1px 14px rgba(246, 243, 238, 0.72);
+}
+
+html.day-background .hero p:not(.eyebrow) {
+    display: inline-block;
+    padding: 2px 20px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(246, 243, 238, 0.42) 0%,
+        rgba(246, 243, 238, 0.26) 48%,
+        transparent 80%
+    );
 }
 
 .eyebrow {
@@ -207,7 +327,7 @@ html.intro-seen .intro-screen {
 }
 
 .hero .eyebrow {
-    color: rgba(255, 255, 255, 0.72);
+    color: var(--scene-eyebrow);
 }
 
 h1,
@@ -246,7 +366,7 @@ p {
 
 .hero p:not(.eyebrow) {
     margin-bottom: 36px;
-    color: rgba(255, 255, 255, 0.82);
+    color: var(--scene-muted);
     font-size: 1.08rem;
 }
 
@@ -260,24 +380,24 @@ p {
 .button {
     min-width: 140px;
     padding: 14px 28px;
-    border: 1px solid rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--scene-line);
     transition: background var(--ease), color var(--ease), border-color var(--ease);
 }
 
 .button-line {
-    color: var(--white);
+    color: var(--scene-text);
 }
 
 .button-fill {
-    color: var(--ink);
-    background: rgba(255, 255, 255, 0.78);
-    border-color: rgba(255, 255, 255, 0.82);
+    color: var(--scene-fill-text);
+    background: var(--scene-fill-bg);
+    border-color: var(--scene-fill-border);
     backdrop-filter: blur(6px);
 }
 
 .button:hover {
-    background: rgba(255, 255, 255, 0.12);
-    color: var(--white);
+    background: var(--scene-hover-bg);
+    color: var(--scene-hover-text);
 }
 
 .trust-strip {

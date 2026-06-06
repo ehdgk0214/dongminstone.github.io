@@ -22,6 +22,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script>
+        const dongminHour = new Date().getHours();
+        if (dongminHour >= 6 && dongminHour < 18) {
+            document.documentElement.classList.add("day-background");
+        }
+
         if (sessionStorage.getItem("dongminIntroSeen") === "true") {
             document.documentElement.classList.add("intro-seen");
         }
@@ -40,6 +45,9 @@
                 <img src="image%20folder/dongminlogologo.png" alt="동민조형석재">
             </a>
             <div class="nav-links">
+                <button class="theme-toggle" type="button" id="theme-toggle" aria-label="낮 밤 화면 전환" aria-pressed="false">
+                    <span></span>
+                </button>
                 <a href="#gallery">작품</a>
                 <a href="#contact">문의</a>
             </div>

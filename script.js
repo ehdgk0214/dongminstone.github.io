@@ -12,6 +12,7 @@
     const introScreen = document.getElementById("intro-screen");
     const introEnter = document.getElementById("intro-enter");
     const introReplay = document.querySelector("[data-intro-replay]");
+    const themeToggle = document.getElementById("theme-toggle");
     const closeButton = modal.querySelector("[data-modal-close]");
     const previousButton = modal.querySelector("[data-modal-prev]");
     const nextButton = modal.querySelector("[data-modal-next]");
@@ -289,6 +290,13 @@
         siteNav?.classList.toggle("is-scrolled", window.scrollY > 24);
     }
 
+    function updateThemeToggleState() {
+        themeToggle?.setAttribute(
+            "aria-pressed",
+            document.documentElement.classList.contains("day-background") ? "true" : "false"
+        );
+    }
+
     function revealGalleryItems() {
         const items = document.querySelectorAll(".gallery-item");
 
@@ -354,6 +362,10 @@
         event.preventDefault();
         showIntro();
     });
+    themeToggle?.addEventListener("click", () => {
+        document.documentElement.classList.toggle("day-background");
+        updateThemeToggleState();
+    });
     equipmentTriggers.forEach((trigger) => {
         trigger.addEventListener("click", () => {
             const imageGroup = equipmentGroups[trigger.dataset.equipmentGroup];
@@ -376,6 +388,7 @@
 
     renderGallery();
     initializeIntro();
+    updateThemeToggleState();
     updateHeroParallax();
     updateNavState();
 })();
