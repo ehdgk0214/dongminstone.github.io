@@ -1067,12 +1067,12 @@ p {
 
 @media (max-width: 900px) and (orientation: portrait) {
     :root {
-        --scene-position: calc(50% - 900px) center;
+        --scene-position: calc(50% + 150px) center;
     }
 
     .intro-screen,
     .hero {
-        background-position: center, calc(50% - 900px) center;
+        background-position: center, calc(50% + 150px) center;
     }
 
     html.day-background {
