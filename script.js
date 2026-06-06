@@ -48,7 +48,10 @@
     let parallaxTicking = false;
     let modalCleanupTimer = null;
     let imageSwitchTimer = null;
+    let themeResetTimer = null;
     const INTRO_SEEN_KEY = "dongminIntroSeen";
+    const THEME_OVERRIDE_KEY = "dongminThemeOverride";
+    const THEME_OVERRIDE_DURATION = 10 * 60 * 1000;
 
     function createTextElement(tag, text, className) {
         const element = document.createElement(tag);
@@ -297,6 +300,75 @@
         );
     }
 
+    function getTimeBasedTheme() {
+        const hour = new Date().getHours();
+        return hour >= 6 && hour < 18 ? "day" : "night";
+    }
+
+    function applyTheme(theme) {
+        document.documentElement.classList.toggle("day-background", theme === "day");
+    }
+
+    function clearThemeOverride() {
+        try {
+            localStorage.removeItem(THEME_OVERRIDE_KEY);
+        } catch {
+            // Ignore storage access failures and fall back to time-based theme.
+        }
+    }
+
+    function readThemeOverride() {
+        try {
+            const stored = JSON.parse(localStorage.getItem(THEME_OVERRIDE_KEY) || "null");
+            if (stored?.expiresAt > Date.now() && (stored.theme === "day" || stored.theme === "night")) {
+                return stored;
+            }
+        } catch {
+            // Ignore invalid or unavailable storage.
+        }
+
+        clearThemeOverride();
+        return null;
+    }
+
+    function scheduleThemeReset(expiresAt) {
+        window.clearTimeout(themeResetTimer);
+        const delay = expiresAt - Date.now();
+        if (delay <= 0) {
+            clearThemeOverride();
+            applyTheme(getTimeBasedTheme());
+            updateThemeToggleState();
+            return;
+        }
+
+        themeResetTimer = window.setTimeout(() => {
+            clearThemeOverride();
+            applyTheme(getTimeBasedTheme());
+            updateThemeToggleState();
+        }, delay);
+    }
+
+    function saveTemporaryTheme(theme) {
+        const expiresAt = Date.now() + THEME_OVERRIDE_DURATION;
+
+        try {
+            localStorage.setItem(THEME_OVERRIDE_KEY, JSON.stringify({ theme, expiresAt }));
+            scheduleThemeReset(expiresAt);
+        } catch {
+            scheduleThemeReset(expiresAt);
+        }
+    }
+
+    function initializeThemeOverride() {
+        const stored = readThemeOverride();
+        if (stored) {
+            applyTheme(stored.theme);
+            scheduleThemeReset(stored.expiresAt);
+        }
+
+        updateThemeToggleState();
+    }
+
     function revealGalleryItems() {
         const items = document.querySelectorAll(".gallery-item");
 
@@ -363,7 +435,9 @@
         showIntro();
     });
     themeToggle?.addEventListener("click", () => {
-        document.documentElement.classList.toggle("day-background");
+        const nextTheme = document.documentElement.classList.contains("day-background") ? "night" : "day";
+        applyTheme(nextTheme);
+        saveTemporaryTheme(nextTheme);
         updateThemeToggleState();
     });
     equipmentTriggers.forEach((trigger) => {
@@ -388,7 +462,7 @@
 
     renderGallery();
     initializeIntro();
-    updateThemeToggleState();
+    initializeThemeOverride();
     updateHeroParallax();
     updateNavState();
 })();

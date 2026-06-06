@@ -22,10 +22,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script>
-        const dongminHour = new Date().getHours();
-        if (dongminHour >= 6 && dongminHour < 18) {
-            document.documentElement.classList.add("day-background");
-        }
+        (() => {
+            const themeOverrideKey = "dongminThemeOverride";
+            const now = Date.now();
+            const applyTheme = (theme) => {
+                document.documentElement.classList.toggle("day-background", theme === "day");
+            };
+            const applyTimeTheme = () => {
+                const hour = new Date().getHours();
+                applyTheme(hour >= 6 && hour < 18 ? "day" : "night");
+            };
+
+            try {
+                const stored = JSON.parse(localStorage.getItem(themeOverrideKey) || "null");
+                if (stored?.expiresAt > now && (stored.theme === "day" || stored.theme === "night")) {
+                    applyTheme(stored.theme);
+                } else {
+                    localStorage.removeItem(themeOverrideKey);
+                    applyTimeTheme();
+                }
+            } catch {
+                applyTimeTheme();
+            }
+        })();
 
         if (sessionStorage.getItem("dongminIntroSeen") === "true") {
             document.documentElement.classList.add("intro-seen");

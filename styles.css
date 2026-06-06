@@ -8,6 +8,7 @@
     --max: 1180px;
     --ease: 220ms ease;
     --scene-image: url("image%20folder/dongmin_background.jpg");
+    --scene-position: center;
     --scene-overlay: linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.34));
     --scene-text: var(--white);
     --scene-muted: rgba(255, 255, 255, 0.82);
@@ -110,7 +111,7 @@ textarea {
     place-items: center;
     background:
         var(--scene-overlay),
-        var(--scene-image) center / cover;
+        var(--scene-image) var(--scene-position) / cover;
     opacity: 1;
     transition: opacity 620ms ease, visibility 620ms ease;
 }
@@ -123,13 +124,7 @@ textarea {
 }
 
 html.day-background .intro-screen::after {
-    background: radial-gradient(
-        circle at center,
-        rgba(246, 243, 238, 0.46) 0%,
-        rgba(246, 243, 238, 0.22) 28%,
-        rgba(246, 243, 238, 0.04) 58%,
-        transparent 82%
-    );
+    background: transparent;
 }
 
 .intro-screen.is-hidden {
@@ -147,6 +142,7 @@ html.intro-seen .intro-screen {
 .intro-enter {
     position: relative;
     z-index: 1;
+    isolation: isolate;
     border: 0;
     background: transparent;
     color: var(--intro-enter-color);
@@ -162,6 +158,20 @@ html.intro-seen .intro-screen {
 
 html.day-background .intro-enter {
     text-shadow: 0 1px 14px rgba(246, 243, 238, 0.76);
+}
+
+html.day-background .intro-enter::after {
+    content: "";
+    position: absolute;
+    inset: -34px -72px;
+    z-index: -1;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(246, 243, 238, 0.46) 0%,
+        rgba(246, 243, 238, 0.22) 48%,
+        transparent 78%
+    );
+    pointer-events: none;
 }
 
 .intro-enter::before {
@@ -286,7 +296,7 @@ html.day-background .theme-toggle span {
     color: var(--scene-text);
     background:
         var(--scene-overlay),
-        var(--scene-image) center / cover;
+        var(--scene-image) var(--scene-position) / cover;
     transform: translate3d(0, var(--hero-parallax, 0px), 0);
     will-change: transform;
 }
@@ -1155,14 +1165,12 @@ p {
 }
 
 @media (max-width: 640px) and (orientation: portrait) {
-    .intro-screen,
-    .hero {
-        background-position: calc(50% - 900px) center;
+    :root {
+        --scene-position: calc(50% - 900px) center;
     }
 
-    html.day-background .intro-screen,
-    html.day-background .hero {
-        background-position: calc(50% + 900px) center;
+    html.day-background {
+        --scene-position: center;
     }
 
     .capacity-media {
