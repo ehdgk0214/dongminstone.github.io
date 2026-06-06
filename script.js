@@ -17,6 +17,16 @@
     const previousButton = modal.querySelector("[data-modal-prev]");
     const nextButton = modal.querySelector("[data-modal-next]");
     const equipmentTriggers = document.querySelectorAll("[data-equipment-group]");
+    const coverImageDimensions = {
+        "image%20folder/thumb/dongmin_whale.webp": [909, 1200],
+        "image%20folder/thumb/dongmin_busan.webp": [933, 1200],
+        "image%20folder/thumb/dm_625.webp": [1031, 1200],
+        "image%20folder/thumb/dongmin_namsa.webp": [1025, 1200],
+        "image%20folder/thumb/dongmin_sanch.webp": [1125, 1200],
+        "image%20folder/thumb/dongmin_block.webp": [1200, 969],
+        "image%20folder/thumb/dongmin_budd.webp": [900, 1200],
+        "image%20folder/thumb/dm_budd1.webp": [900, 1200]
+    };
     const equipmentGroups = {
         cutting: {
             title: "주요 절삭기계",
@@ -84,8 +94,11 @@
             visual.className = "gallery-visual";
 
             const image = document.createElement("img");
+            const dimensions = coverImageDimensions[artwork.coverImage] || [900, 1200];
             image.src = artwork.coverImage;
             image.alt = artwork.title;
+            image.width = dimensions[0];
+            image.height = dimensions[1];
             image.loading = "lazy";
             image.decoding = "async";
             image.fetchPriority = "low";
@@ -130,6 +143,8 @@
             const image = document.createElement("img");
             image.src = imageUrl;
             image.alt = "";
+            image.width = 160;
+            image.height = 160;
             image.loading = "lazy";
             image.decoding = "async";
 
@@ -227,6 +242,7 @@
         renderThumbnails(images);
         selectImage(initialIndex);
 
+        modal.removeAttribute("inert");
         modal.classList.add("is-open");
         modal.setAttribute("aria-hidden", "false");
         document.body.classList.add("modal-open");
@@ -238,6 +254,7 @@
         modalImage.classList.remove("is-switching");
         modal.classList.remove("is-open");
         modal.setAttribute("aria-hidden", "true");
+        modal.setAttribute("inert", "");
         document.body.classList.remove("modal-open");
 
         modalCleanupTimer = window.setTimeout(() => {
@@ -261,15 +278,50 @@
         if (!modal.classList.contains("is-open")) return;
 
         if (event.key === "Escape") {
+            event.preventDefault();
             closeModal();
         }
 
         if (event.key === "ArrowRight") {
+            event.preventDefault();
             showNextImage();
         }
 
         if (event.key === "ArrowLeft") {
+            event.preventDefault();
             showPreviousImage();
+        }
+
+        if (event.key === "Tab") {
+            trapModalFocus(event);
+        }
+    }
+
+    function getModalFocusableElements() {
+        return Array.from(modal.querySelectorAll(
+            "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])"
+        )).filter((element) => {
+            const style = window.getComputedStyle(element);
+            return style.display !== "none" && style.visibility !== "hidden";
+        });
+    }
+
+    function trapModalFocus(event) {
+        const focusableElements = getModalFocusableElements();
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+            return;
+        }
+
+        if (!event.shiftKey && document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
         }
     }
 
