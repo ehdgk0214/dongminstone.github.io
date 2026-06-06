@@ -394,6 +394,15 @@ p {
 }
 
 .hero p:not(.eyebrow) {
+    display: inline-block;
+    max-width: min(720px, calc(100vw - 40px));
+    padding: 2px 20px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.34) 0%,
+        rgba(0, 0, 0, 0.22) 48%,
+        transparent 80%
+    );
     margin-bottom: 36px;
     color: var(--scene-muted);
     font-size: 1.08rem;
