@@ -1065,6 +1065,26 @@ p {
     }
 }
 
+@media (max-width: 900px) and (orientation: portrait) {
+    :root {
+        --scene-position: calc(50% - 900px) center;
+    }
+
+    .intro-screen,
+    .hero {
+        background-position: center, calc(50% - 900px) center;
+    }
+
+    html.day-background {
+        --scene-position: center;
+    }
+
+    html.day-background .intro-screen,
+    html.day-background .hero {
+        background-position: center, center;
+    }
+}
+
 @media (max-width: 640px) {
     .nav-inner {
         width: calc(100% - 28px);
@@ -1165,14 +1185,6 @@ p {
 }
 
 @media (max-width: 640px) and (orientation: portrait) {
-    :root {
-        --scene-position: calc(50% - 900px) center;
-    }
-
-    html.day-background {
-        --scene-position: center;
-    }
-
     .capacity-media {
         gap: 30px;
     }
