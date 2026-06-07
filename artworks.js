@@ -6,6 +6,7 @@ window.DONGMIN_ARTWORKS = [
         title: "장생포 고래 조형물",
         location: "장생포 고래박물관 근처",
         description: "고래의 꿈 분수대에 설치된 화강암 조형물",
+        alt: "장생포 고래박물관 근처에 설치된 화강석 고래 조형물 제작 사례",
         coverImage: imagePath("thumb/dongmin_whale.webp"),
         images: [
             imagePath("dongmin_whale.jpg"),
@@ -33,6 +34,7 @@ window.DONGMIN_ARTWORKS = [
         title: "윤흥신 장군상 좌대, 배경",
         location: "부산 동구 윤흥신 장군상",
         description: "장군상의 무게감을 받쳐주는 대형 석재 좌대",
+        alt: "윤흥신 장군상 설치를 위한 대형 석재 좌대와 배경 제작 사례",
         coverImage: imagePath("thumb/dongmin_busan.webp"),
         images: [
             imagePath("dongmin_busan.jpg")
@@ -42,6 +44,7 @@ window.DONGMIN_ARTWORKS = [
         title: "대구 남구 6.25 참전유공자 명비",
         location: "대구 낙동강 승전기념관",
         description: "대구 남구 6.25 참전유공자를 기리는 석재 명비",
+        alt: "대구 낙동강 승전기념관에 설치된 참전유공자 석재 명비 제작 사례",
         coverImage: imagePath("thumb/dm_625.webp"),
         images: [
             imagePath("dm_625.jpg")
@@ -51,6 +54,7 @@ window.DONGMIN_ARTWORKS = [
         title: "국민보도연맹사건 희생자 위령비",
         location: "경남 산청",
         description: "희생자들의 이름과 기억을 새긴 위령비",
+        alt: "경남 산청 국민보도연맹사건 희생자 위령비 제작 사례",
         coverImage: imagePath("thumb/dongmin_sanch.webp"),
         images: [
             imagePath("dongmin_sanch.jpg")
@@ -60,6 +64,7 @@ window.DONGMIN_ARTWORKS = [
         title: "제주 현지사 설법전 외벽",
         location: "제주 현지사 설법전",
         description: "제주 현지사 설법전의 외벽을 석재로 조성한 사례",
+        alt: "제주 현지사 설법전 외벽 석재 조성 사례",
         coverImage: imagePath("thumb/dm_jeju.webp"),
         images: [
             imagePath("add/dm_jeju.jpg"),
@@ -70,6 +75,7 @@ window.DONGMIN_ARTWORKS = [
         title: "임업기술실용화센터 표지석",
         location: "대전광역시 유성구",
         description: "여러 색감의 석재가 조화된 기관 표지석",
+        alt: "임업기술실용화센터 기관 표지석 제작 사례",
         coverImage: imagePath("thumb/dongmin_block.webp"),
         images: [
             imagePath("dongmin_block.jpg")
@@ -79,6 +85,7 @@ window.DONGMIN_ARTWORKS = [
         title: "남사예담촌 표지석",
         location: "경남 산청군 남사예담촌",
         description: "마을의 정체성과 결을 담은 석재 표지석",
+        alt: "경남 산청 남사예담촌 석재 표지석 제작 사례",
         coverImage: imagePath("thumb/dongmin_namsa.webp"),
         images: [
             imagePath("dongmin_namsa.jpg")
@@ -88,6 +95,7 @@ window.DONGMIN_ARTWORKS = [
         title: "석조미륵보살입상 복각",
         location: "동민조형석재",
         description: "부여 대조사 석조미륵보살입상을 바탕으로 한 복각 작업",
+        alt: "석조미륵보살입상 복각을 위한 석재 조각 작업 사례",
         coverImage: imagePath("thumb/dongmin_budd.webp"),
         images: [
             imagePath("dongmin_budd.jpg"),
@@ -98,6 +106,7 @@ window.DONGMIN_ARTWORKS = [
         title: "석재 조각 아카이브",
         location: "동민조형석재",
         description: "제작 과정과 완성작을 함께 담은 조각 기록",
+        alt: "석재 조각과 공공 조형물 제작 과정 아카이브",
         coverImage: imagePath("thumb/dm_budd1.webp"),
         images: [
             imagePath("dm_budd1.jpg"),

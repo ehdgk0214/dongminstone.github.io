@@ -33,20 +33,20 @@
             title: "주요 절삭기계",
             location: "대형 조형물을 위한 절삭·가공 설비",
             description: "대형 석재 절단과 형상 가공에 쓰이는 주요 절삭 설비입니다.",
+            alt: "대형 와이어 쏘우와 다이아몬드 커터를 활용한 석재 가공 설비",
             images: [
                 "image%20folder/dm_100.jpg",
-                "image%20folder/dm_100_1.jpg",
                 "image%20folder/dm_50.jpg",
                 "image%20folder/dm_40.jpg",
                 "image%20folder/dm_wire.jpg",
-                "image%20folder/dm_wire2.jpg",
-                "image%20folder/dm_drill.jpg"
+                "image%20folder/dm_wire2.jpg"
             ]
         },
         heavy: {
             title: "주요 중장비",
             location: "작업장과 야적장 내 석재 운반",
             description: "대형 석재를 작업장과 야적장 사이에서 옮기고 제작 흐름을 보조하는 운반 장비 기록입니다.",
+            alt: "대형 석재 조형물 제작을 보조하는 작업장 운반 장비",
             images: [
                 "image%20folder/dm_fork1.webp",
                 "image%20folder/dm_fork2.webp",
@@ -99,7 +99,7 @@
             const image = document.createElement("img");
             const dimensions = coverImageDimensions[artwork.coverImage] || [900, 1200];
             image.src = artwork.coverImage;
-            image.alt = artwork.title;
+            image.alt = artwork.alt || artwork.title;
             image.width = dimensions[0];
             image.height = dimensions[1];
             image.loading = "lazy";
@@ -174,7 +174,7 @@
         preload.onload = () => {
             window.clearTimeout(imageSwitchTimer);
             modalImage.src = nextSrc;
-            modalImage.alt = imageGroup.title;
+            modalImage.alt = imageGroup.alt || imageGroup.title;
             window.requestAnimationFrame(() => {
                 modalImage.classList.remove("is-switching");
             });
@@ -184,13 +184,13 @@
         preload.onerror = () => {
             window.clearTimeout(imageSwitchTimer);
             modalImage.src = nextSrc;
-            modalImage.alt = imageGroup.title;
+            modalImage.alt = imageGroup.alt || imageGroup.title;
             modalImage.classList.remove("is-switching");
         };
 
         imageSwitchTimer = window.setTimeout(() => {
             modalImage.src = nextSrc;
-            modalImage.alt = imageGroup.title;
+            modalImage.alt = imageGroup.alt || imageGroup.title;
             modalImage.classList.remove("is-switching");
         }, 450);
 
