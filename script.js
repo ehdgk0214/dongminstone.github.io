@@ -35,10 +35,12 @@
             description: "대형 석재 절단과 형상 가공에 쓰이는 주요 절삭 설비입니다.",
             images: [
                 "image%20folder/dm_100.jpg",
+                "image%20folder/dm_100_1.jpg",
                 "image%20folder/dm_50.jpg",
                 "image%20folder/dm_40.jpg",
                 "image%20folder/dm_wire.jpg",
-                "image%20folder/dm_wire2.jpg"
+                "image%20folder/dm_wire2.jpg",
+                "image%20folder/dm_drill.jpg"
             ]
         },
         heavy: {
