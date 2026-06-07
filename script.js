@@ -36,10 +36,12 @@
             alt: "대형 와이어 쏘우와 다이아몬드 커터를 활용한 석재 가공 설비",
             images: [
                 "image%20folder/dm_100.jpg",
+                "image%20folder/dm_100_1.jpg",
                 "image%20folder/dm_50.jpg",
                 "image%20folder/dm_40.jpg",
                 "image%20folder/dm_wire.jpg",
-                "image%20folder/dm_wire2.jpg"
+                "image%20folder/dm_wire2.jpg",
+                "image%20folder/dm_drill.jpg"
             ]
         },
         heavy: {
