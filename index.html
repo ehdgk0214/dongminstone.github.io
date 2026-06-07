@@ -179,6 +179,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="artworks.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="form.js" defer></script>
 </head>
 <body class="intro-active">
     <div class="intro-screen" id="intro-screen" aria-label="동민조형석재 인트로 화면">
@@ -361,6 +362,10 @@
                 </div>
 
                 <form class="inquiry-form" action="https://formspree.io/f/mpqozrwp" method="POST">
+                    <label class="form-honeypot" aria-hidden="true">
+                        <span>Leave this field blank</span>
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+                    </label>
                     <label>
                         <span>성함/업체명</span>
                         <input type="text" name="고객명" autocomplete="name" required>
