@@ -57,9 +57,9 @@ window.DONGMIN_ARTWORKS = [
         ]
     },
     {
-        title: "제주 현지사 설법당 외벽",
-        location: "제주 현지사 설법당",
-        description: "제주 현지사 설법당의 외벽을 석재로 조성한 사례",
+        title: "제주 현지사 설법전 외벽",
+        location: "제주 현지사 설법전",
+        description: "제주 현지사 설법전의 외벽을 석재로 조성한 사례",
         coverImage: imagePath("thumb/dm_jeju.webp"),
         images: [
             imagePath("add/dm_jeju.jpg"),
