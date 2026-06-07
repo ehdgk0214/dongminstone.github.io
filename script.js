@@ -19,11 +19,12 @@
     const equipmentTriggers = document.querySelectorAll("[data-equipment-group]");
     const coverImageDimensions = {
         "image%20folder/thumb/dongmin_whale.webp": [909, 1200],
+        "image%20folder/thumb/dm_jeju.webp": [840, 473],
         "image%20folder/thumb/dongmin_busan.webp": [933, 1200],
         "image%20folder/thumb/dm_625.webp": [1031, 1200],
         "image%20folder/thumb/dongmin_namsa.webp": [1025, 1200],
         "image%20folder/thumb/dongmin_sanch.webp": [1125, 1200],
-        "image%20folder/thumb/dongmin_block.webp": [1200, 969],
+        "image%20folder/thumb/dongmin_block.webp": [840, 630],
         "image%20folder/thumb/dongmin_budd.webp": [900, 1200],
         "image%20folder/thumb/dm_budd1.webp": [900, 1200]
     };

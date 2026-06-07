@@ -8,7 +8,25 @@ window.DONGMIN_ARTWORKS = [
         description: "고래의 꿈 분수대에 설치된 화강암 조형물",
         coverImage: imagePath("thumb/dongmin_whale.webp"),
         images: [
-            imagePath("dongmin_whale.jpg")
+            imagePath("dongmin_whale.jpg"),
+            imagePath("dm_whale/dm_whale_100.jpg"),
+            imagePath("dm_whale/dm_whale_101.jpg"),
+            imagePath("dm_whale/dm_whale_102.jpg"),
+            imagePath("dm_whale/dm_whale_103.jpg"),
+            imagePath("dm_whale/dm_whale_201.jpg"),
+            imagePath("dm_whale/dm_whale_202.jpg"),
+            imagePath("dm_whale/dm_whale_203.jpg"),
+            imagePath("dm_whale/dm_whale_204.jpg"),
+            imagePath("dm_whale/dm_whale_205.jpg"),
+            imagePath("dm_whale/dm_whale_300.jpg"),
+            imagePath("dm_whale/dm_whale_301.jpg"),
+            imagePath("dm_whale/dm_whale_302.jpg"),
+            imagePath("dm_whale/dm_whale_303.jpg"),
+            imagePath("dm_whale/dm_whale_304.jpg"),
+            imagePath("dm_whale/dm_whale_400.jpg"),
+            imagePath("dm_whale/dm_whale_401.jpg"),
+            imagePath("dm_whale/dm_whale_402.jpg"),
+            imagePath("dm_whale/dm_whale_500.jpg")
         ]
     },
     {
@@ -30,21 +48,22 @@ window.DONGMIN_ARTWORKS = [
         ]
     },
     {
-        title: "남사예담촌 표지석",
-        location: "경남 산청군 남사예담촌",
-        description: "마을의 정체성과 결을 담은 석재 표지석",
-        coverImage: imagePath("thumb/dongmin_namsa.webp"),
-        images: [
-            imagePath("dongmin_namsa.jpg")
-        ]
-    },
-    {
         title: "국민보도연맹사건 희생자 위령비",
         location: "경남 산청",
         description: "희생자들의 이름과 기억을 새긴 위령비",
         coverImage: imagePath("thumb/dongmin_sanch.webp"),
         images: [
             imagePath("dongmin_sanch.jpg")
+        ]
+    },
+    {
+        title: "제주 현지사 설법당 외벽",
+        location: "제주 현지사 설법당",
+        description: "제주 현지사 설법당의 외벽을 석재로 조성한 사례",
+        coverImage: imagePath("thumb/dm_jeju.webp"),
+        images: [
+            imagePath("add/dm_jeju.jpg"),
+            imagePath("add/dm_jeju1.jpg")
         ]
     },
     {
@@ -57,13 +76,22 @@ window.DONGMIN_ARTWORKS = [
         ]
     },
     {
+        title: "남사예담촌 표지석",
+        location: "경남 산청군 남사예담촌",
+        description: "마을의 정체성과 결을 담은 석재 표지석",
+        coverImage: imagePath("thumb/dongmin_namsa.webp"),
+        images: [
+            imagePath("dongmin_namsa.jpg")
+        ]
+    },
+    {
         title: "석조미륵보살입상 복각",
         location: "동민조형석재",
         description: "부여 대조사 석조미륵보살입상을 바탕으로 한 복각 작업",
         coverImage: imagePath("thumb/dongmin_budd.webp"),
         images: [
             imagePath("dongmin_budd.jpg"),
-            
+            imagePath("add/dm_buddd.jpg")
         ]
     },
     {
@@ -74,12 +102,15 @@ window.DONGMIN_ARTWORKS = [
         images: [
             imagePath("dm_budd1.jpg"),
             imagePath("dm_budd2.jpg"),
+            imagePath("add/dm_budd2-1.jpg"),
             imagePath("dm_budd3.jpg"),
             imagePath("dm_31.jpg"),
             imagePath("dm_family.jpg"),
             imagePath("dm_xiamen.jpg"),
             imagePath("dongmin_bud.jpg"),
-            imagePath("dm_mt.jpg")
+            imagePath("dm_mt.jpg"),
+            imagePath("add/dm_gct.jpg"),
+            imagePath("add/dm_sc1.jpg")
         ]
     }
 ];
