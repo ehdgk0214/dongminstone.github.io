@@ -207,10 +207,6 @@
             <div class="contact-layout">
                 <div class="contact-methods">
                     <div class="method-item">
-                        <label>대표 전화</label>
-                        <a href="tel:010-0000-0000">010-XXXX-XXXX</a>
-                    </div>
-                    <div class="method-item">
                         <label>이메일 문의</label>
                         <a href="mailto:contact@dongmin.com">contact@dongmin.com</a>
                     </div>
